@@ -14,4 +14,9 @@ class lz4File:
         memoryStream.seek(header.headerSize, 0)
 
         for chunk in table:
-            chunk.read(input)
+            saveChunk = chunk.read(input)
+            #print(saveChunk)
+            memoryStream.write(saveChunk)
+
+        memoryStream.seek(header.headerSize, 0)
+        return memoryStream

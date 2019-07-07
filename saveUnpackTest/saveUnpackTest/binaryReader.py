@@ -7,6 +7,8 @@ class binaryReader:
     def readBytes(self, length):
         return self.stream.read(length)
     #--
+    def readInt16(self):
+        return self.unpack('h', 2)
     def readInt32(self):
         return self.unpack('i', 4)
 
@@ -15,6 +17,9 @@ class binaryReader:
 
     def unpack(self, format, length = 1):
         return unpack(format, self.readBytes(length))[0]
+
+    def baseStream(self):
+        return self.stream
 
 class BinaryStream:
     def readByte(self):

@@ -19,14 +19,15 @@ class lz4Chunk:
         inputData = bytes(self.compressedChunkSize)
         outputData = bytes(self.decompressedChunkSize)
 
-        self.test(input, inputData)
         count = 0
+        uncompressedSize = 0
         for eachByte in inputData:
             count += 1
+        for eachByte in outputData:
+            uncompressedSize += 1
         
         inputData = bytes(input.read(count))
-        print(inputData)
         
-        outputData = block.decompress(inputData)
-
+        outputData = block.decompress(inputData,uncompressedSize,return_bytearray = True)
+        
         return outputData
